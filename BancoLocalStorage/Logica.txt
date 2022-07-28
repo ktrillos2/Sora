@@ -1,0 +1,16 @@
+Debe revisarse que la cuenta exista, al crear la cuenta debe tener un numero de documento y nombre
+de persona,el monto empezaria desde 0 pero el usuario no debe digitarlo,para tener dinero en la cuenta 
+se debe realizar un deposito , los depositos deben tener un id ,un numero de cuenta al que se va a depositar
+el monto que se va a depositar y la fecha debe ser estatica del dia que se realizo el deposito, se debe 
+verificar que el numero de cuenta exista, que el monto no sea menos a 0.
+
+se deben poder hacer transferencias entre las cuentas ya existentes,se debe verificar que las cuentas 
+existan,se debe verificar que al realizar una transferencia, el monto de la cuenta que va a
+salir el dinero, no sea igual o menor a 0,al realizar una transferencia, se debe 
+restar el monto solicitado a la cuenta que realiza la transferencia y sumarlo a la cuenta
+que recibe la transferencia, la transferencia debe tener un emisor,receptor,monto
+fecha e id de la transferencia
+
+se debe poder hacer retiros, la cuenta que realiza el retiro no puede tener
+un saldo menor o igual a 0,que la cuenta exista,el retiro debe contener la cuenta a la cual
+se le va a realizar el retiro, la fecha del retiro, id del retiro, y el monto del retiro

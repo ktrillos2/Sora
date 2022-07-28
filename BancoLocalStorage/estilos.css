@@ -1,0 +1,51 @@
+body {
+
+    font-family: Arial, Helvetica, sans-serif;
+    background: #e8e8e8;
+
+}
+
+.menu {
+    list-style: none;
+    padding: 0;
+    background: #49455c;
+    width: 65%;
+    margin-top: 5px;
+
+}
+
+.menu li a {
+    text-decoration: none;
+    color: whitesmoke;
+    padding: 20px;
+    display: block;
+}
+
+.menu li {
+
+    display: inline-block;
+    text-align: center;
+
+}
+
+.menu li a:hover {
+
+    background: #ef8354;
+
+}
+#img{
+
+    width: 50px;
+    height:50px;
+    border:0;
+
+}
+#boton {
+    float: right;
+    margin-top: 5px;
+    border: 0;
+    background-color: #49455c;
+    width: 54px;
+    height: 50px;
+    border-radius: 50%;
+}
