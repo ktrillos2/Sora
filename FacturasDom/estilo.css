@@ -1,0 +1,22 @@
+h1{
+    text-align: center;
+}
+
+.box{
+    text-align: center;
+}
+
+table, th, td {
+    border:1px solid black;
+}
+
+#encabezado{
+    text-align: center;
+    text-transform: uppercase;
+}
+
+table{
+    margin-top: 2rem;
+    width: 100%;
+
+}
