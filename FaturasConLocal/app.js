@@ -1,10 +1,10 @@
 const formulario = document.querySelector('#formulario');
-const tabla=document.getElementById('tabla')
+const tabla = document.getElementById('tabla')
 let productos = JSON.parse(localStorage.getItem('producto')) ?? []
 agregarTabla();
 
 //ingreso de datos
-tabla.style.display="none"
+tabla.style.display = "none"
 formulario.addEventListener('submit', function (e) {
     e.preventDefault();
     agregarProducto();
@@ -12,7 +12,7 @@ formulario.addEventListener('submit', function (e) {
 });
 
 function agregarProducto() {
-    tabla.style.display="block"
+    tabla.style.display = "block"
     let nombreProducto = document.getElementById('nP').value;
     let precioProducto = document.getElementById('pP').value;
     let cantidadProducto = document.getElementById('cP').value;
@@ -29,13 +29,13 @@ function agregarProducto() {
     })
 
     if (prueb == false) {
-        
+
         productos.push(producto)
         let prop = productos.reduce((sumatoria, datos) => {
-            
+
             return sumatoria = datos.cantidad * datos.precio
-        },0)
-        producto.total=prop
+        }, 0)
+        producto.total = prop
         localStorage.setItem('producto', JSON.stringify(productos));
         agregarTabla();
     } else { alert('producto ya existe') }
