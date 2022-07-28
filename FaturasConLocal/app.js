@@ -39,11 +39,7 @@ function agregarCantidad(){
 
         return sumatoria+=datos.cantidad*datos.precio
     })
-    console.log(prop)
-
-
-
-
+    productos.map(()=>{})
 }
 function agregarTabla() {
     //let local = JSON.parse(localStorage.getItem('producto'))
