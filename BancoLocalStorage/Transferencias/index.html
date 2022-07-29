@@ -21,8 +21,28 @@
         </ul>
         
     </div>
-    <div>
-        <h1>Estas En Transferencias</h1>
+    <div id="divtransferencias" class="ingreso">
+        <h1 id="h1c" class="contc">Realizar Transferencia</h1>
+        <form id="formulariotransferencias" class="contc">
+
+            <input type="number" id="numEnviar" class="ingreso" placeholder="Cuenta A Enviar"></br>
+            <input type="number" id="numRecibir" class="ingreso" placeholder="Cuenta A Recibir"></br>
+            <input type="number" id="cantidad" class="ingreso" placeholder="Cantidad A Transferir"></br>
+
+        </form>
+        <button id="botontransferencias" type="submit" style="margin-top: 10px;">Registrar</button>
+
+    </div>
+    <div id="resultadepositos" style="margin-top: 10px">
+
+        <h5 id="h5">Deposito Realizado</h5>
+        <p>Nombre De La Cuenta Que Envia: <span style="font-weight:bold;" id="spanNombre"></span></p>
+        <p>Nombre De La Cuenta Que Recibe: <span style="font-weight:bold;" id="spanNombre"></span></p>
+        <p>Numero De La Cuenta Que Envia: <span style="font-weight:bold;" id="spanNumero"></span></p>
+        <p>Numero De La Cuenta Que Recibe: <span style="font-weight:bold;" id="spanNumero"></span></p>
+        <p>Total Transferencia: <span style="font-weight:bold;" id="spanDepositado"></span></p>
+        <p>Fecha De Creacion: <span style="font-weight:bold;" id="spanFecha"></span></p>
+
     </div>
     <script src="app.js"></script>
 </body>
