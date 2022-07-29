@@ -57,7 +57,6 @@ function crearCuenta(){
     let prueb = cuentas.some((item) => {
         return item.numeroCuenta == numero
     })
-    console.log(prueb);
 
     if (prueb == false) {
         cuentas.push(cuenta);
