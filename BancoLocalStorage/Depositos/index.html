@@ -25,12 +25,22 @@
         <form id="formulariodepositos" class="contc">
 
             <input type="number" id="numCuenta" class="ingreso" placeholder="Numero De Cuenta"></br>
-            <input type="text" id="nomCuenta" class="ingreso" placeholder="Nombre De La Cuenta"></br>
+            <input type="number" id="cantidad" class="ingreso" placeholder="Cantidad A Depositar"></br>
 
         </form>
-        <button id="botoncuentas" type="submit" style="margin-top: 10px;">Registrar</button>
+        <button id="botondepositos" type="submit" style="margin-top: 10px;">Registrar</button>
+
+    </div>
+    <div id="resultadepositos" style="margin-top: 10px">
+
+        <h5 id="h5">Deposito Realizado</h5>
+        <p>Nombre De La Cuenta: <span style="font-weight:bold;" id="spanNombre"></span></p>
+        <p>Numero De La Cuenta: <span style="font-weight:bold;" id="spanNumero"></span></p>
+        <p>Total Depositado: <span style="font-weight:bold;" id="spanDepositado"></span></p>
+        <p>Fecha De Creacion: <span style="font-weight:bold;" id="spanFecha"></span></p>
 
     </div>
     <script src="app.js"></script>
+    <script src="../cuentas/app.js"></script>
 </body>
 </html>

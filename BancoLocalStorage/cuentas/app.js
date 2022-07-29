@@ -1,8 +1,8 @@
-const formulariocuentas=document.getElementById('formulariocuentas')
+let cuentas=JSON.parse(localStorage.getItem('cuentas')) ?? [];
 const botoncuentas=document.getElementById('botoncuentas')
 const tablaResultado=document.getElementById('resultadocuenta')
-tablaResultado.style.display="none"
-let cuentas=JSON.parse(localStorage.getItem('cuentas')) ?? []
+
+
 botoncuentas.addEventListener('click',(e)=>{
     e.preventDefault();
     //ingreso del usuario
@@ -29,8 +29,8 @@ function agregarTablaCuentas(){
     let spanNumero=document.getElementById('spanNumero');
     let spanMonto=document.getElementById('spanMonto');
     let spanFecha=document.getElementById('spanFecha');
-    let cuentasA=JSON.parse(localStorage.getItem('cuentas'))
-    cuentasA.forEach((item)=>{
+    //let cuentasA=JSON.parse(localStorage.getItem('cuentas'))
+    cuentas.forEach((item)=>{
         spanNombre.textContent=item.nombre
         spanNumero.textContent=item.numeroCuenta
         spanMonto.textContent=item.monto
@@ -52,15 +52,13 @@ function crearCuenta(){
         nombre:nombre,
         numeroCuenta:numero,
         fechaCreacion:new Date().toLocaleDateString(),
-        monto:0
+        monto:0,
     }
-    let prueb = cuentas.some((item) => {
-        return item.numeroCuenta == numero
-    })
 
-    if (prueb == false) {
+    if(!cuentas.some((datos)=>(datos.numeroCuenta===numero))){
         cuentas.push(cuenta);
         localStorage.setItem('cuentas', JSON.stringify(cuentas));
-    } else { alert('producto ya existe') }
-
+    }else{
+        alert("Cuenta Ya Existe");
+    }
 }
