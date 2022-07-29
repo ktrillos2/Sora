@@ -48,10 +48,9 @@ body {
     
     width: 20%;
     border: 1px solid black ;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 35rem;
     margin-bottom: 3rem;
-    margin-top: 2rem;
+    margin-top: 4rem;
 
 }
 #botoncuentas{
@@ -61,8 +60,7 @@ body {
 }
 #resultadocuenta{
     width: 20%;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 35rem;
     border: 1px solid;
     text-align: center;
 

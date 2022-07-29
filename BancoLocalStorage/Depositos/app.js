@@ -1,11 +1,9 @@
 const boton=document.getElementById('botondepositos');
-const divdep=document.getElementById('resultadepositos');
 let cuentas2=JSON.parse(localStorage.getItem('cuentas')) ?? []
 let depositos=JSON.parse(localStorage.getItem('depositos'))??[]
-
+agregartabla();
 boton.addEventListener('click',(e)=>{
     e.preventDefault();
-    divdep.style.display="block"
     realizarDeposito();
     agregartabla();
     agregarMonto();
@@ -20,6 +18,7 @@ function agregarMonto(){
         }
         return
     })
+    localStorage.setItem('cuentas',JSON.stringify(cuentas))
 }
 function realizarDeposito(){
 
@@ -66,5 +65,4 @@ function agregartabla(){
         spanDepositado.textContent=item.cantidadDeposito
         spanFecha.textContent=item.fechaDeposito
     })
-
 }

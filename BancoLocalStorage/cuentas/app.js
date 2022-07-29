@@ -1,4 +1,5 @@
 let cuentas=JSON.parse(localStorage.getItem('cuentas')) ?? [];
+agregarTablaCuentas();
 const botoncuentas=document.getElementById('botoncuentas')
 const tablaResultado=document.getElementById('resultadocuenta')
 
@@ -18,8 +19,6 @@ botoncuentas.addEventListener('click',(e)=>{
         
         crearCuenta();
         agregarTablaCuentas();
-        tablaResultado.style.display="block"
-
     }
     
     
