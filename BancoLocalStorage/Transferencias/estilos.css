@@ -1,0 +1,71 @@
+body {
+
+    font-family: Arial, Helvetica, sans-serif;
+    background: #e8e8e8;
+
+}
+
+.menu {
+    list-style: none;
+    padding: 0;
+    background: #49455c;
+    width: 65%;
+    margin-top: 5px;
+    margin-left: 10px;
+
+}
+
+.menu li a {
+    text-decoration: none;
+    color: whitesmoke;
+    padding: 20px;
+    display: block;
+}
+
+.menu li {
+
+    display: inline-block;
+    text-align: center;
+
+}
+
+.menu li a:hover {
+
+    background: #ef8354;
+
+}
+.ingreso{
+    text-align: center;
+    margin-top: 10px;
+    
+}
+#h1c{
+
+    text-align: center;
+
+}
+#divcuentas{
+    
+    width: 20%;
+    border: 1px solid black ;
+    margin-left: 35rem;
+    margin-bottom: 3rem;
+    margin-top: 4rem;
+
+}
+#botoncuentas{
+
+    margin-bottom: 10px;
+
+}
+#resultadocuenta{
+    width: 20%;
+    margin-left: 35rem;
+    border: 1px solid;
+    text-align: center;
+
+}
+#h5{
+
+    margin-top: 15px;
+}
