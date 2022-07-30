@@ -42,7 +42,7 @@ function realizarDeposito(){
         }
 
 
-
+        alert('Deposito Exitoso')
         depositos.push(objetoNuevo);
         localStorage.setItem('depositos', JSON.stringify(depositos))
 
