@@ -1,6 +1,14 @@
 #formulario{
 
     text-align: center ;
+    margin-left:28rem;
+    margin-right: 1rem;
+    
+}
+.editar{
+    
+    text-align: center;
+    display: none;
 }
 h2{
 
@@ -30,4 +38,10 @@ h2{
 
     margin-top: 15px;
     margin-bottom: 10px;
+}
+#formularioEditar, .divform{
+
+    float: left;
+    margin-left: 0 auto;
+    margin-right: 0 auto;
 }

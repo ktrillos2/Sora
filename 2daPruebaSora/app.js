@@ -1,9 +1,11 @@
 let asignaturas = JSON.parse(localStorage.getItem('asignaturas')) ?? []
 agregartodo();
-let materiasCanceladas = []
+let materiasCanceladas = JSON.parse(localStorage.getItem('materiasCanceladas')) ?? []
+agregarMateria();
+let materiasEditadas=[]
 
-function procesos(e) {
-    
+function procesos() {
+    i++
     let nombre = document.getElementById('nombresAsi').value;
     let primer = document.getElementById('primerPrevio').value;
     let segund = document.getElementById('segundoPrevio').value;
@@ -15,7 +17,7 @@ function procesos(e) {
         segund: segund,
         tercer: tercer,
         examen: examen,
-        id:i++
+        id:i
     }
 
 
@@ -36,26 +38,25 @@ function procesos(e) {
     definitivatot();
     cambiarColor();
     agregartodo();
-    localStorage.setItem('asignaturas', JSON.stringify(asignaturas))
+    localStorage.setItem('asignaturas', JSON.stringify(asignaturas));
 
 }
 
 function agregartodo() {
-    let p = 0
-    p++
+    let i=1
     let tab = ""
     asignaturas.forEach((element) => {
 
 
         tab += `
-        <tr id="tr">
-        <th id="bot${p}">${element.nombre}</th>
+        <tr id="${i++}">
+        <th>${element.nombre}</th>
         <th>${element.primer}</th>
         <th>${element.segund}</th>
         <th>${element.tercer}</th>
         <th>${element.examen}</th>
         <th style="background-color: ${element.color};">${element.definitiva}</th>
-        <th><button type="submit" class="boton" id="botonca">Cancelar</button><button type="submit" class="my-2 ml-2" id="botonEditar">Editar</button></th>
+        <th><button type="button" onclick="cancelar(${element.id})">Cancelar</button><button type="submit" class="my-2 ml-2" id="botonEditar" onclick="editar(${element.id})">Editar</button></th>
         </tr>
         </tbody>
         `
@@ -65,38 +66,55 @@ function agregartodo() {
     bodyt.innerHTML = tab
 
 }
-function cancelar() {
-    let tab = ""
-    let i = 0
-    i++
-    console.log('enevo cancelar');
-    let botonCan = document.getElementById('tr');
-    console.log(botonCan);
-    let prueba1=asignaturas.filter((item)=>{
+function editar(id){
+    let formularioEditar=document.querySelector('.editar');
+    formularioEditar.style.display="block"
+    return id
+}
+function cancelar(id) {
+    
 
-        return botonCan==item.id
+
+
+    let materiasCancelada=asignaturas.filter((item)=>{
+
+        return item.id!==id
+
+    })
+    let cancelada=asignaturas.find((item)=>{
+
+        return item.id==id
+    })
+    materiasCanceladas.push(cancelada)
+    asignaturas=materiasCancelada
+    localStorage.setItem('materiasCanceladas',JSON.stringify(materiasCanceladas))
+    localStorage.setItem('asignaturas',JSON.stringify(materiasCancelada))
+    agregarMateria();
+    agregartodo();
+    
+}
+function agregarMateria(){
+
+    
+    
+    let estructura=""   
+    materiasCanceladas.forEach((item)=>{
+        
+        estructura+=`<div class="card">
+        <div class="card-header">
+        <p>${item.nombre}</p>
+        </div>
+        <div class="card-body">
+        <p>Definitiva: ${item.definitiva}</p>
+        <p>fecha: ${new Date().toLocaleDateString()}</p>
+        </div>
+        </div>
+        `
     })
     
-    prueba1.forEach((item) => {
-        
-        tab += `
-                <div class="card-header">
-                    <h3>${item.nombre}</h3>
-                </div>
-                <div class="card-body">
-                    <p id="tituloCardB">Primer Previo: ${item.primer}</p>
-                    <p id="tituloCardB">Primer Previo: ${item.segund}</p>
-                    <p id="tituloCardB">Primer Previo: ${item.tercer}</p>
-                    <p id="tituloCardB">Primer Previo: ${item.examen}</p>
-                    <p id="tituloCardB">Primer Previo: ${item.definitiva}</p>
-                </div>`
+    let divCard=document.querySelector('.card-group')
 
-    })
-    materiasCanceladas.push(prueba1)
-    let bodyCard = document.getElementById('card')
-    bodyCard.innerHTML = tab
-
-
+    divCard.innerHTML=estructura
 
 }
 
@@ -139,18 +157,55 @@ function definitivatot() {
     })
 
 }
+function agregarEditada(){
+    i++
+    let nombre = document.getElementById('nombresAsi2').value;
+    let primer = document.getElementById('primerPrevio2').value;
+    let segund = document.getElementById('segundoPrevio2').value;
+    let tercer = document.getElementById('tercerPrevio2').value;
+    let examen = document.getElementById('examenFinal2').value;
+    const edit = {
+        nombre: nombre,
+        primer: primer,
+        segund: segund,
+        tercer: tercer,
+        examen: examen,
+        id:i
+    }
+    if (primer > 5.0 || primer < 0) {
+        alert('el numero es mayor a 5.0 o menor a 0');
+        return false
+    } else if (segund > 5.0 || segund < 0) {
+        alert('el numero es mayor a 5.0 o menor a 0');
+        return false
+    } else if (tercer > 5.0 || tercer < 0) {
+        alert('el numero es mayor a 5.0 o menor a 0');
+        return false
+    } else if (examen > 5.0 || examen < 0) {
+        alert('el numero es mayor a 5.0 o menor a 0');
+        return false
+    }
+    materiasEditadas.push(edit)
+    localStorage.setItem('materiasEditadas',JSON.stringify(materiasEditadas))
+    
+    console.log(evento);
+    asignaturas.push(edit)
+    definitivatot();
+    agregartodo();
+    localStorage.setItem('materiasEditadas',JSON.stringify(materiasEditadas))
+    
+}
 let i = 0
-i++
 const formulario = document.getElementById('formulario')
 formulario.addEventListener('submit', (e)=>{
     e.preventDefault()
     procesos();
     
 })
-const boton = document.querySelectorAll('#tr')
+const boton = document.getElementById('botonRegistrarEdicion')
+boton.addEventListener('click',(e)=>{
+    e.preventDefault();
+    agregarEditada();
 
-for(let i=0;i<asignaturas.length;i++){
-    
-    boton[i].addEventListener('click',cancelar)
 
-}
+})
