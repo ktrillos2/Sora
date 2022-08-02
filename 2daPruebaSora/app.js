@@ -2,7 +2,7 @@ let asignaturas = JSON.parse(localStorage.getItem('asignaturas')) ?? []
 agregartodo();
 let materiasCanceladas = JSON.parse(localStorage.getItem('materiasCanceladas')) ?? []
 agregarMateria();
-let materiasEditadas=[]
+let pruebaEditadas=[]
 
 function procesos() {
     i++
@@ -66,10 +66,29 @@ function agregartodo() {
     bodyt.innerHTML = tab
 
 }
+
 function editar(id){
     let formularioEditar=document.querySelector('.editar');
     formularioEditar.style.display="block"
-    return id
+    let objetoid={
+        id:id
+    }
+    pruebaEditadas.push(objetoid)
+    let busquedaMateriaId=asignaturas.find((item)=>{
+        
+        return item.id==id
+    })
+    console.log(busquedaMateriaId);
+    let nombre = document.getElementById('nombresAsi2');
+    let primer = document.getElementById('primerPrevio2');
+    let segund = document.getElementById('segundoPrevio2');
+    let tercer = document.getElementById('tercerPrevio2');
+    let examen = document.getElementById('examenFinal2');
+    nombre.setAttribute("value",busquedaMateriaId.nombre)
+    primer.setAttribute("value",busquedaMateriaId.primer)
+    segund.setAttribute("value",busquedaMateriaId.segund)
+    tercer.setAttribute("value",busquedaMateriaId.tercer)
+    examen.setAttribute("value",busquedaMateriaId.examen)
 }
 function cancelar(id) {
     
@@ -158,20 +177,12 @@ function definitivatot() {
 
 }
 function agregarEditada(){
-    i++
+
     let nombre = document.getElementById('nombresAsi2').value;
     let primer = document.getElementById('primerPrevio2').value;
     let segund = document.getElementById('segundoPrevio2').value;
     let tercer = document.getElementById('tercerPrevio2').value;
     let examen = document.getElementById('examenFinal2').value;
-    const edit = {
-        nombre: nombre,
-        primer: primer,
-        segund: segund,
-        tercer: tercer,
-        examen: examen,
-        id:i
-    }
     if (primer > 5.0 || primer < 0) {
         alert('el numero es mayor a 5.0 o menor a 0');
         return false
@@ -185,15 +196,43 @@ function agregarEditada(){
         alert('el numero es mayor a 5.0 o menor a 0');
         return false
     }
-    materiasEditadas.push(edit)
-    localStorage.setItem('materiasEditadas',JSON.stringify(materiasEditadas))
     
-    console.log(evento);
-    asignaturas.push(edit)
-    definitivatot();
+    pruebaEditadas[0].nombre= nombre
+    pruebaEditadas[0].primer= primer
+    pruebaEditadas[0].segund= segund
+    pruebaEditadas[0].tercer= tercer
+    pruebaEditadas[0].examen= examen
+    let comparacionMateria=asignaturas.some((item)=>{
+
+        return item.nombre==nombre
+    })
+    if(comparacionMateria==true){
+
+        alert('El Nombre Ya Existe')
+        return false
+    }
+    
+    let busquedaMateria=asignaturas.findIndex((item)=>{
+
+        return item.id==pruebaEditadas[0].id
+    })
+    asignaturas.splice(busquedaMateria,1)
+    let nuevoObjeto={
+
+        nombre:pruebaEditadas[0].nombre,
+        primer:pruebaEditadas[0].primer,
+        segund:pruebaEditadas[0].segund,
+        tercer:pruebaEditadas[0].tercer,
+        examen:pruebaEditadas[0].examen,
+        id:pruebaEditadas[0].id,
+
+    }
+    asignaturas.push(nuevoObjeto);
+    asignaturas.def=definitivatot();
+    cambiarColor();
+    localStorage.setItem('asignaturas',JSON.stringify(asignaturas))
+    agregarMateria();
     agregartodo();
-    localStorage.setItem('materiasEditadas',JSON.stringify(materiasEditadas))
-    
 }
 let i = 0
 const formulario = document.getElementById('formulario')
@@ -203,9 +242,4 @@ formulario.addEventListener('submit', (e)=>{
     
 })
 const boton = document.getElementById('botonRegistrarEdicion')
-boton.addEventListener('click',(e)=>{
-    e.preventDefault();
-    agregarEditada();
-
-
-})
+boton.addEventListener('click',agregarEditada)
