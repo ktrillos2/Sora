@@ -108,13 +108,16 @@ function agregarCancelada() {
 }
 function editar(cedula) {
     //agregamos el boton de guardar edicion
-    let botonGuardarEdicion = `<input type="text" class="my-1 text-center" id="nombre" name="Nombre" placeholder="Nombre" required /><br>
-    <input type="number" class="my-1 text-center" id="cedula" name="cedula" placeholder="Cedula" required /><br>
-    <input type="date" class="my-1 text-center" id="fecha" name="fecha" placeholder="Fecha De Nacimiento"
-    required /><br>
-    <button type="submit" id="guardarFormulario" class="my-2">Guardar</button>`
-    botonGuardarEdicion += `<button type="button" id="guardarEdicion" onclick="edicion(${cedula})">Guardar Edicion</button>`
-    formulario.innerHTML = botonGuardarEdicion
+    let botonGuardarEdicion=document.createElement("button") 
+    //`<button type="button" id="guardarEdicion" onclick="edicion(${cedula})">Guardar Edicion</button>`
+    botonGuardarEdicion.addEventListener('click',()=>{
+        edicion(cedula);
+        
+    })
+    botonGuardarEdicion.id="guardarEdicion";
+    botonGuardarEdicion.type="button";
+    botonGuardarEdicion.textContent="Guardar Edicion"
+    formulario.appendChild(botonGuardarEdicion)
     //ocultamos el boton de guardar formulario para agregar el boton de guardar edicion
     let botonFormulario = document.getElementById('guardarFormulario');
     botonFormulario.style.display = "none"
@@ -137,31 +140,15 @@ function edicion(cedula) {
     let nombre = document.getElementById('nombre').value;
     let cedula2 = document.getElementById('cedula').value;
     let fecha = document.getElementById('fecha').value;
-    //buscamos la posicion del elemento a eliminar
-    let busquedaPersona = personas.findIndex((item) => {
+    let buscarPersona = personas.find((item) => {
 
         return item.cedula == cedula
     })
-    let comparacionPersona=personas.some((item)=>{
-
-        return item.nombre==nombre && item
-    })
-    if(comparacionPersona==true){
-
-        alert('El Nombre Ya Existe')
-        return false
-    }
-    personas.splice(busquedaPersona, 1)
-    let nuevaPersona = {
-
-        nombre: nombre,
-        cedula: cedula2,
-        fecha: fecha,
-        edad: calcularEdad(fecha),
-
-    }
-    personas.push(nuevaPersona);
+    buscarPersona.nombre=nombre;
+    buscarPersona.cedula=cedula2;
+    buscarPersona.fecha=fecha;
     localStorage.setItem('personas', JSON.stringify(personas))
+    calcularEdad();
     crearTabla();
 
 }
@@ -179,3 +166,5 @@ formulario.addEventListener('submit', (e) => {
     //insertamos la tabla
     crearTabla();
 })
+
+
